@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shoe Store</title>
+    <link rel="stylesheet" href="shoe_store.css">
+    <style>
+        /* Styles for image slider */
+        .slider {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slides {
+            display: flex;
+            width: 400%; /* Adjust based on number of images */
+            animation: slide 8s linear infinite; /* Smooth continuous sliding */
+        }
+
+        .slides img {
+            width: 100%;
+            height: 400px;
+        }
+
+        /* Keyframe animation for continuous sliding */
+        @keyframes slide {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ZenZ Walk</h1>
+    </header>
+
+    <!-- Sliding images -->
+    <section class="slider">
+        <div class="slides">
+            <img src="C:/Users/akalo/Desktop/sneakers.webp" alt="Sneakers">
+            <img src="C:\Users\akalo\Desktop\OIP (1).jpeg" alt="Shoe 2">
+            <img src="C:\Users\akalo\Desktop\Casual-Summer-Pu-Leather-Breathable-Men-Shoes2.jpg" alt="Shoe 3">
+            <img src="C:/Users/akalo/Desktop/R (1).jpeg" alt="Shoe 4">
+        </div>
+    </section>
+
+    <!-- Search bar -->
+    <section class="search">
+        <label for="searchBox">Search for Shoes:</label>
+        <input type="text" id="searchBox" placeholder="Type shoe name..." onkeyup="searchShoes()">
+    </section>
+
+    <!-- Filter by category -->
+    <section class="filter">
+        <label for="category">Filter by Category:</label>
+        <select id="category" onchange="filterShoes()">
+            <option value="all">All</option>
+            <option value="running">Running Shoes</option>
+            <option value="sneaker">Sneakers</option>
+            <option value="casual">Casual Shoes</option>
+            <option value="boots">Boots</option>
+        </select>
+    </section>
+
+    <!-- Filter by price range -->
+    <section class="filter">
+        <label for="priceRange">Filter by Price Range:</label>
+        <select id="priceRange" onchange="filterShoes()">
+            <option value="all">All</option>
+            <option value="0-20000">₹0 - ₹20,000</option>
+            <option value="20001-40000">₹20,001 - ₹40,000</option>
+            <option value="40001-60000">₹40,001 - ₹60,000</option>
+            <option value="60001-100000">₹60,001 - ₹1,00,000</option>
+        </select>
+    </section>
+
+    <!-- Shoes listing -->
+    <section class="shoe-list">
+        <div class="shoe-item" data-category="running">
+            <img src="C:\Users\akalo\Desktop\Shoe img.avif" alt="Shoe 1">
+            <h2>Nike</h2>
+            <p class="price">₹27000.00</p>
+            <span class="star" data-value="5">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="1">&#9733;</span>
+            <button onclick="addToCart('Nike', 27000)">Add to Cart</button>
+            <button onclick="buyNow('Nike', 27000)">Buy</button>
+        </div>
+
+        <div class="shoe-item" data-category="sneaker">
+            <img src="C:\Users\akalo\Desktop\OIP.jpeg" alt="Shoe 2">
+            <h2>Christian Dior</h2>
+            <p class="price">₹80000.00</p>
+            <span class="star" data-value="5">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="1">&#9733;</span>
+            <button onclick="addToCart('Christian Dior', 80000)">Add to Cart</button>
+            <button onclick="buyNow('Christian Dior', 80000)">Buy</button>
+        </div>
+
+        <div class="shoe-item" data-category="casual">
+            <img src="C:\Users\akalo\Desktop\R.jpeg" alt="Shoe 3">
+            <h2>Louis Vuitton</h2>
+            <p class="price">₹22500.00</p>
+            <span class="star" data-value="5">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="1">&#9733;</span>
+            <button onclick="addToCart('Louis Vuitton', 22500)">Add to Cart</button>
+            <button onclick="buyNow('Louis Vuitton', 22500)">Buy</button>
+        </div>
+
+        <div class="shoe-item" data-category="boots">
+            <img src="C:\Users\akalo\Desktop\R (1).jpeg" alt="Shoe 4">
+            <h2>Amiri</h2>
+            <p class="price">₹55000.00</p>
+            <span class="star" data-value="5">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="1">&#9733;</span>
+            <button onclick="addToCart('Amiri', 55000)">Add to Cart</button>
+            <button onclick="buyNow('Amiri', 55000)">Buy</button>
+        </div>
+
+        <div class="shoe-item" data-category="sneaker">
+            <img src="C:\Users\akalo\Desktop\21b301ae3267c2d1920dfd730156ea63.jpg" alt="Shoe 5">
+            <h2>Nike JD Mid</h2>
+            <p class="price">₹52500.00</p>
+            <span class="star" data-value="5">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="1">&#9733;</span>
+            <button onclick="addToCart('Nike JD Mid', 52500)">Add to Cart</button>
+            <button onclick="buyNow('Nike JD Mid', 52500)">Buy</button>
+        </div>
+
+        <div class="shoe-item" data-category="casual">
+            <img src="C:\Users\akalo\Desktop\41965vRz7UL.jpg" alt="Shoe 6">
+            <h2>Formal Z</h2>
+            <p class="price">₹2500.00</p>
+            <span class="star" data-value="5">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="1">&#9733;</span>
+            <button onclick="addToCart('Louis Vuitton', 2500)">Add to Cart</button>
+            <button onclick="buyNow('Louis Vuitton', 2500)">Buy</button>
+        </div>
+
+        <div class="shoe-item" data-category="running">
+            <img src="C:\Users\akalo\Desktop\4a5e028f-1b6c-49a8-b46f-fb751b6e4106_1.27bffd77b09c8192810881601f590027.webp" alt="Shoe 7">
+            <h2>Adidas Adifom</h2>
+            <p class="price">₹22500.00</p>
+            <span class="star" data-value="5">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="1">&#9733;</span>
+            <button onclick="addToCart('Adidas Adifom', 4500)">Add to Cart</button>
+            <button onclick="buyNow('Adidas Adifom', 4500)">Buy</button>
+        </div>
+
+        <div class="shoe-item" data-category="boots">
+            <img src="C:\Users\akalo\Desktop\R (2).jpeg" alt="Shoe 8">
+            <h2>Tom Boy</h2>
+            <p class="price">₹6700.00</p>
+            <span class="star" data-value="5">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="1">&#9733;</span>
+            <button onclick="addToCart('Tom Boy', 6700)">Add to Cart</button>
+            <button onclick="buyNow('Tom Boy', 6700)">Buy</button>
+        </div>
+
+        <div class="shoe-item" data-category="casual">
+            <img src="C:\Users\akalo\Desktop\bucadia-leather-formal-shoes-ff91-black-1000x1000.webp" alt="Shoe 9">
+            <h2>Bata</h2>
+            <p class="price">₹499.00</p>
+            <span class="star" data-value="5">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="1">&#9733;</span>
+            <button onclick="addToCart('Tom Boy', 499)">Add to Cart</button>
+            <button onclick="buyNow('Tom Boy', 499)">Buy</button>
+        </div>
+
+        <div class="shoe-item" data-category="running">
+            <img src="C:\Users\akalo\Desktop\1545161327-1543201724-brooks-levitate-2-1531595124.avif" alt="Shoe 10">
+            <h2>Skechers</h2>
+            <p class="price">₹3799.00</p>
+            <span class="star" data-value="5">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="1">&#9733;</span>
+            <button onclick="addToCart('Skechers', 3799)">Add to Cart</button>
+            <button onclick="buyNow('Skechers', 3799)">Buy</button>
+        </div>
+
+        <div class="shoe-item" data-category="running">
+            <img src="C:\Users\akalo\Desktop\R (3).jpeg" alt="Shoe 11">
+            <h2>Adidas Sportz</h2>
+            <p class="price">₹72549.00</p>
+            <span class="star" data-value="5">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="1">&#9733;</span>
+            <button onclick="addToCart('Adidas Sportz', 72549)">Add to Cart</button>
+            <button onclick="buyNow('Adidas Sportz', 72549)">Buy</button>
+        </div>
+
+        <div class="shoe-item" data-category="sneaker">
+            <img src="C:\Users\akalo\Desktop\8341734396_c191ecf1b6_k-56a88ce33df78cf7729ebeea.jpg" alt="Shoe 12">
+            <h2>Nike Air Jordan 1</h2>
+            <p class="price">₹92000.00</p>
+            <span class="star" data-value="5">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="1">&#9733;</span>
+            <button onclick="addToCart('>Nike Air Jordan 1', 920000)">Add to Cart</button>
+            <button onclick="buyNow('Nike Air Jordan 1', 920000)">Buy</button>
+        </div>
+
+        <div class="shoe-item" data-category="sneaker">
+            <img src="C:\Users\akalo\Desktop\louis-vuitton-fw22-lv-skate-sneaker-3.avif" alt="Shoe 12">
+            <h2>Louis Vuitton Sneakerz</h2>
+            <p class="price">₹99399.00</p>
+            <span class="star" data-value="5">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="1">&#9733;</span>
+            <button onclick="addToCart('Louis Vuitton Sneakerz', 99399)">Add to Cart</button>
+            <button onclick="buyNow('Louis Vuitton Sneakerz', 99399)">Buy</button>
+        </div>
+
+        <div class="shoe-item" data-category="boots">
+            <img src="C:\Users\akalo\Desktop\OIP (3).jpeg" alt="Shoe 13">
+            <h2>Footster Boots</h2>
+            <p class="price">₹58500.00</p>
+            <span class="star" data-value="5">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="1">&#9733;</span>
+            <button onclick="addToCart('Footster Boots', 58500)">Add to Cart</button>
+            <button onclick="buyNow('Footster Boots', 58500)">Buy</button>
+        </div>
+
+        <div class="shoe-item" data-category="casual">
+            <img src="C:\Users\akalo\Desktop\3b267ad097c608dcf1b60fe0269e2328.jpg" alt="Shoe 14">
+            <h2>Chanel</h2>
+            <p class="price">₹10499.00</p>
+            <span class="star" data-value="5">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="1">&#9733;</span>
+            <button onclick="addToCart('Chanel', 10499)">Add to Cart</button>
+            <button onclick="buyNow('Chanel', 10499)">Buy</button>
+        </div>
+
+        <div class="shoe-item" data-category="sneaker">
+            <img src="C:\Users\akalo\Desktop\il_1588xN.2769921010_56a4.jpg" alt="Shoe 15">
+            <h2>Prada</h2>
+            <p class="price">₹19399.00</p>
+            <span class="star" data-value="5">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="1">&#9733;</span>
+            <button onclick="addToCart('Prada', 19399)">Add to Cart</button>
+            <button onclick="buyNow('Prada', 19399)">Buy</button>
+        </div>
+
+        <div class="shoe-item" data-category="running">
+            <img src="C:\Users\akalo\Desktop\20642872.avif" alt="Shoe 16">
+            <h2>Adidas Streetrun</h2>
+            <p class="price">₹5200.00</p>
+            <span class="star" data-value="5">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="1">&#9733;</span>
+            <button onclick="addToCart('Adidas Streetrun', 5200)">Add to Cart</button>
+            <button onclick="buyNow('Adidas Streetrun', 5200)">Buy</button>
+        </div>
+
+        <div class="shoe-item" data-category="casual">
+            <img src="C:\Users\akalo\Desktop\224f32ad6914822c00c3b605b94a7641.jpg"alt="Shoe 17">
+            <h2>Givenchy</h2>
+            <p class="price">₹1500.00</p>
+            <span class="star" data-value="5">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="1">&#9733;</span>
+            <button onclick="addToCart('Givenchy', 1500)">Add to Cart</button>
+            <button onclick="buyNow('Givenchy', 1500)">Buy</button>
+        </div>
+
+        <div class="shoe-item" data-category="boots">
+            <img src="C:\Users\akalo\Desktop\8e1588b6-a97a-46cf-81ba-6ede6f9083ad.b9717437f882433f5b5dddd9c9fcb962.webp" alt="Shoe 18">
+            <h2>Coach</h2>
+            <p class="price">₹20000.00</p>
+            <span class="star" data-value="5">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="1">&#9733;</span>
+            <button onclick="addToCart('Coach', 20000)">Add to Cart</button>
+            <button onclick="buyNow('Coach', 20000)">Buy</button>
+        </div>
+
+        <div class="shoe-item" data-category="sneaker">
+            <img src="C:\Users\akalo\Desktop\OIP (4).jpeg" alt="Shoe 19">
+            <h2>Fendi</h2>
+            <p class="price">₹27500.00</p>
+            <span class="star" data-value="5">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="1">&#9733;</span>
+            <button onclick="addToCart('Fendi', 27500)">Add to Cart</button>
+            <button onclick="buyNow('Fendi', 27500)">Buy</button>
+        </div>
+
+        <div class="shoe-item" data-category="running">
+            <img src="C:\Users\akalo\Desktop\OIP (5).jpeg" alt="Shoe 20">
+            <h2>Puma Shoe</h2>
+            <p class="price">₹500.00</p>
+            <span class="star" data-value="5">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="1">&#9733;</span>
+            <button onclick="addToCart('Puma Shoe', 500)">Add to Cart</button>
+            <button onclick="buyNow('Puma Shoe', 500)">Buy</button>
+        </div>
+
+        <div class="shoe-item" data-category="sneaker">
+            <img src="C:\Users\akalo\Desktop\c8f1cd9530672bc033e4882b7453ffd9.jpg" alt="Shoe 21">
+            <h2>Harmes</h2>
+            <p class="price">₹22500.00</p>
+            <span class="star" data-value="5">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="1">&#9733;</span>
+            <button onclick="addToCart('Harmes', 12500)">Add to Cart</button>
+            <button onclick="buyNow('Hermes', 12500)">Buy</button>
+        </div>
+
+        <div class="shoe-item" data-category="boots">
+            <img src="C:\Users\akalo\Desktop\bolt-200-black-10-eyelet-mens-combat-boot-900x900.jpg" alt="Shoe 22">
+            <h2>Dior Boots</h2>
+            <p class="price">₹82500.00</p>
+            <span class="star" data-value="5">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="1">&#9733;</span>
+            <button onclick="addToCart('Dior Boots', 22500)">Add to Cart</button>
+            <button onclick="buyNow('Dior Boots', 82500)">Buy</button>
+        </div>
+
+        <div class="shoe-item" data-category="casual">
+            <img src="C:\Users\akalo\Desktop\5a0c9876-7eb6-4acd-bdda-d4d378ba4a511663406363062StreetArmorbyPantaloonsMenGreyJoggerHighlyDistressedHeavyFad1.jpg" alt="Shoe 23">
+            <h2>Lofers</h2>
+            <p class="price">₹2500.00</p>
+            <span class="star" data-value="5">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="1">&#9733;</span>
+            <button onclick="addToCart('Lofers', 2500)">Add to Cart</button>
+            <button onclick="buyNow('Lofers', 2500)">Buy</button>
+        </div>
+    </section>
+
+    <!-- Cart section -->
+    <section id="cart">
+        <h2>Your Cart</h2>
+        <ul id="cartItems"></ul>
+        <p id="totalPrice">Total: ₹0</p>
+    </section>
+
+    <section>
+        <h2>About Us</h2>
+        <p>At ZenZ Walk, we believe that every step should be stylish, comfortable, and confident. Our online shoe store is dedicated to providing you with a curated collection of the latest trends in footwear, ranging from casual sneakers to elegant formal shoes. Whether you’re hitting the gym, strolling around the city, or preparing for a special occasion, we have the perfect pair to elevate your style.</p>
+    
+        <h2>Our Mission</h2>
+        <p>Our mission is to empower individuals through quality footwear that complements their lifestyle. We strive to offer a diverse selection of brands and styles that cater to every taste and budget, ensuring that you find exactly what you’re looking for.</p>
+    
+        <h2>Our Collection</h2>
+        <ul>
+            <li><strong>Running Shoes:</strong> Enhance your performance with our high-quality running shoes, designed for comfort and support.</li>
+            <li><strong>Sneakers:</strong> Stay trendy with our stylish sneakers that offer versatility for everyday wear.</li>
+            <li><strong>Casual Shoes:</strong> Find the perfect balance between style and comfort with our selection of casual footwear.</li>
+            <li><strong>Boots:</strong> Step out in confidence with our collection of chic and durable boots suitable for any occasion.</li>
+        </ul>
+    
+        <h2>Quality Assurance</h2>
+        <p>We are committed to providing our customers with high-quality products. Each pair of shoes is carefully selected to meet our standards for durability, comfort, and style. We work with trusted brands to ensure that you receive the best value for your money.</p>
+    
+        <h2>Why Choose ZenZ Walk?</h2>
+        <ul>
+            <li><strong>Wide Variety:</strong> A diverse range of styles and sizes to suit every foot and occasion.</li>
+            <li><strong>Easy Shopping Experience:</strong> Navigate our user-friendly website to find your perfect pair with ease.</li>
+            <li><strong>Secure Payment Options:</strong> Shop with confidence using our secure payment gateways.</li>
+            <li><strong>Customer Support:</strong> Our dedicated customer support team is here to assist you with any inquiries or concerns.</li>
+        </ul>
+    
+        <h2>Shop with Us Today!</h2>
+        <p>Discover the perfect pair of shoes to fit your unique style at ZenZ Walk. Browse our latest collection and experience the joy of online shopping from the comfort of your home.</p>
+    </section>
+    <footer>
+        <p>&copy; ZenZ Walk Shoe Store. All rights reserved.</p>
+    </footer>
+
+    <script src="shoe_store.js"></script>
+</body>
+</html>
